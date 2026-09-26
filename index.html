@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer vs Tester — Live Career Scorecard</title>
+<meta name="description" content="Developer vs Tester career comparison, presented as a live stadium scorecard. Skills, salary innings, tools and training links for Pune based IT learners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --pitch: #0c3d2e;
+  --pitch-dark: #082820;
+  --night: #0a1128;
+  --floodlight: #f4f2ea;
+  --amber: #ffb238;
+  --dev-blue: #2b6cb0;
+  --dev-blue-dark: #1a3f66;
+  --tester-red: #d84b3f;
+  --tester-red-dark: #8f2f27;
+  --ink: #101418;
+  --line: rgba(244,242,234,0.14);
+  --radius: 6px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+body{
+  margin:0;
+  background: var(--night);
+  color: var(--floodlight);
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+h1,h2,h3,.score-num{ font-family:'Oswald', sans-serif; letter-spacing: 0.3px; margin: 0; }
+a{ color: var(--amber); }
+img{ max-width:100%; display:block; }
+.wrap{ max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ---------- header ---------- */
+header{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(10,17,40,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.nav{ display:flex; align-items:center; justify-content:space-between; padding: 16px 24px; max-width:1100px; margin:0 auto; }
+.brand{ display:flex; align-items:center; gap:10px; font-family:'Oswald',sans-serif; font-size:20px; font-weight:600; color:var(--floodlight); text-decoration:none; }
+.brand .bulb{ width:12px; height:12px; border-radius:50%; background: var(--amber); box-shadow: 0 0 10px 3px rgba(255,178,56,0.6); }
+.nav-links{ display:flex; gap:26px; list-style:none; margin:0; padding:0; }
+.nav-links a{ color: var(--floodlight); text-decoration:none; font-size:14px; font-weight:500; opacity:0.85; }
+.nav-links a:hover{ opacity:1; color:var(--amber); }
+.nav-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--floodlight); padding:8px 12px; border-radius:4px; font-size:14px; }
+
+@media (max-width:760px){
+  .nav-links{ display:none; }
+  .nav-toggle{ display:inline-block; }
+}
+
+/* ---------- hero / matchday ---------- */
+.hero{
+  padding: 70px 24px 60px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,178,56,0.10), transparent 45%),
+    linear-gradient(180deg, var(--night) 0%, var(--pitch-dark) 130%);
+  text-align:center;
+  border-bottom: 3px solid var(--amber);
+}
+.eyebrow-strip{ font-size:13px; letter-spacing:1px; color: var(--amber); font-weight:600; margin-bottom:18px; }
+.hero h1{
+  font-size: clamp(34px, 6vw, 58px);
+  color: var(--floodlight);
+  max-width: 780px;
+  margin: 0 auto 18px;
+}
+.hero p.sub{ max-width:620px; margin:0 auto 34px; color:rgba(244,242,234,0.78); font-size:18px; }
+
+.scoreboard{
+  display:flex; align-items:center; justify-content:center; gap:0;
+  max-width: 640px; margin: 0 auto; border:1px solid var(--line); border-radius: var(--radius); overflow:hidden;
+}
+.score-side{ flex:1; padding: 26px 18px; }
+.score-side.dev{ background: linear-gradient(160deg, var(--dev-blue), var(--dev-blue-dark)); }
+.score-side.test{ background: linear-gradient(160deg, var(--tester-red), var(--tester-red-dark)); }
+.score-side .role{ font-size:13px; letter-spacing:1px; opacity:0.85; margin-bottom:6px; }
+.score-side .score-num{ font-size:44px; font-weight:600; }
+.vs-badge{
+  width:64px; height:64px; border-radius:50%; background: var(--amber); color:var(--ink);
+  display:flex; align-items:center; justify-content:center; font-family:'Oswald',sans-serif; font-weight:700; font-size:18px;
+  border: 4px solid var(--night); margin: 0 -20px; position:relative; z-index:2;
+}
+.hero-cta{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn{ display:inline-block; padding:13px 26px; border-radius: var(--radius); font-weight:600; font-size:15px; text-decoration:none; }
+.btn-primary{ background: var(--amber); color: var(--ink); }
+.btn-outline{ border:1px solid var(--floodlight); color: var(--floodlight); }
+.btn-primary:hover{ background:#ffc65e; }
+.btn-outline:hover{ background: rgba(244,242,234,0.08); }
+
+/* ---------- section shell ---------- */
+section{ padding: 78px 0; }
+.section-head{ max-width:680px; margin: 0 auto 46px; text-align:center; }
+.section-head h2{ font-size: clamp(26px,4vw,36px); color:var(--floodlight); margin-bottom:12px; }
+.section-head p{ color: rgba(244,242,234,0.7); font-size:16px; }
+.tag{ display:inline-block; background: rgba(255,178,56,0.14); color:var(--amber); font-size:12px; font-weight:600; letter-spacing:0.5px; padding:5px 12px; border-radius:20px; margin-bottom:14px; }
+
+/* ---------- playing XI cards ---------- */
+.lineup{ display:grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+@media (max-width:760px){ .lineup{ grid-template-columns: 1fr; } }
+.player-card{ border-radius: 10px; padding: 30px 26px; border:1px solid var(--line); position:relative; overflow:hidden; }
+.player-card.dev{ background: linear-gradient(165deg, rgba(43,108,176,0.22), rgba(10,17,40,0.4)); }
+.player-card.test{ background: linear-gradient(165deg, rgba(216,75,63,0.22), rgba(10,17,40,0.4)); }
+.player-card h3{ font-size:24px; margin-bottom:6px; }
+.player-card .jersey{ font-size:13px; color: rgba(244,242,234,0.6); margin-bottom:20px; }
+.stat-row{ margin-bottom:14px; }
+.stat-row .stat-label{ display:flex; justify-content:space-between; font-size:14px; margin-bottom:6px; color: rgba(244,242,234,0.85); }
+.stat-bar{ height:8px; background: rgba(244,242,234,0.12); border-radius:4px; overflow:hidden; }
+.stat-fill{ height:100%; border-radius:4px; }
+.player-card.dev .stat-fill{ background: var(--dev-blue); }
+.player-card.test .stat-fill{ background: var(--tester-red); }
+.player-card p.desc{ margin-top:22px; font-size:15px; color: rgba(244,242,234,0.8); }
+
+/* ---------- commentary box ---------- */
+.commentary{ background: var(--pitch); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.quote-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:22px; }
+@media (max-width:900px){ .quote-grid{ grid-template-columns:1fr; } }
+.quote-card{ background: rgba(10,17,40,0.5); border-left:3px solid var(--amber); padding: 22px 20px; border-radius: 4px; font-size:15px; }
+.quote-card .who{ margin-top:14px; font-size:13px; color: var(--amber); font-weight:600; }
+
+/* ---------- innings / salary ---------- */
+.innings-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:20px; }
+@media (max-width:900px){ .innings-grid{ grid-template-columns:1fr; } }
+.innings-card{ border:1px solid var(--line); border-radius: 8px; padding:24px; text-align:center; }
+.innings-card .over{ font-size:13px; color: var(--amber); letter-spacing:0.5px; margin-bottom:10px; }
+.innings-card h3{ font-size:22px; margin-bottom:10px; }
+.innings-card p{ font-size:14px; color: rgba(244,242,234,0.7); }
+
+/* ---------- toolkit / sponsor boards ---------- */
+.sponsor-strip{ background: var(--pitch-dark); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.board-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; }
+@media (max-width:900px){ .board-grid{ grid-template-columns: repeat(2,1fr); } }
+@media (max-width:520px){ .board-grid{ grid-template-columns: 1fr; } }
+.board{ display:block; text-decoration:none; background: linear-gradient(160deg, rgba(255,178,56,0.14), rgba(244,242,234,0.03)); border:1px solid var(--line); border-radius: 8px; padding:22px 18px; color: var(--floodlight); transition: transform 0.18s ease, border-color 0.18s ease; }
+.board:hover{ transform: translateY(-4px); border-color: var(--amber); }
+.board .board-tag{ font-size:12px; color: var(--amber); font-weight:600; margin-bottom:8px; letter-spacing:0.4px; }
+.board h4{ font-family:'Oswald',sans-serif; font-size:18px; margin:0 0 8px; }
+.board span.go{ font-size:13px; color: rgba(244,242,234,0.65); }
+
+/* ---------- press box (blog links) ---------- */
+.press-list{ display:flex; flex-direction:column; gap:14px; max-width:720px; margin:0 auto; }
+.press-item{ display:flex; justify-content:space-between; align-items:center; gap:16px; background: rgba(244,242,234,0.04); border:1px solid var(--line); border-radius:8px; padding:18px 20px; text-decoration:none; color: var(--floodlight); }
+.press-item:hover{ border-color: var(--amber); }
+.press-item .headline{ font-size:15px; font-weight:500; }
+.press-item .read{ font-size:13px; color: var(--amber); white-space:nowrap; }
+
+/* ---------- verdict / final over ---------- */
+.verdict{ text-align:center; }
+.verdict-box{ max-width: 700px; margin: 0 auto; border:1px solid var(--line); border-radius:10px; padding: 40px 30px; background: linear-gradient(160deg, rgba(43,108,176,0.12), rgba(216,75,63,0.12)); }
+.verdict-box h2{ font-size: clamp(24px,4vw,32px); margin-bottom:16px; }
+.verdict-box p{ color: rgba(244,242,234,0.8); font-size:16px; margin-bottom:26px; }
+
+/* ---------- footer ---------- */
+footer{ background: var(--night); border-top: 3px solid var(--amber); padding: 50px 24px 30px; }
+.foot-grid{ display:grid; grid-template-columns: 1.3fr 1fr 1fr; gap:34px; margin-bottom:36px; }
+@media (max-width:760px){ .foot-grid{ grid-template-columns:1fr; } }
+.foot-grid h5{ font-family:'Oswald',sans-serif; font-size:15px; color: var(--amber); margin-bottom:14px; letter-spacing:0.4px; }
+.foot-grid ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.foot-grid a{ color: rgba(244,242,234,0.8); text-decoration:none; font-size:14px; }
+.foot-grid a:hover{ color: var(--amber); }
+.foot-bottom{ border-top:1px solid var(--line); padding-top:22px; text-align:center; font-size:13px; color: rgba(244,242,234,0.5); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="brand"><span class="bulb"></span> Career Stadium</a>
+    <ul class="nav-links">
+      <li><a href="#lineup">Playing XI</a></li>
+      <li><a href="#innings">Salary Innings</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#press">Press Box</a></li>
+      <li><a href="https://www.justacademy.co" target="_blank" rel="noopener">Home Ground</a></li>
+    </ul>
+    <button class="nav-toggle">Menu</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow-strip">Match Day Special</div>
+    <h1>Developer vs Tester: the career derby every IT aspirant eventually plays</h1>
+    <p class="sub">Two teams, one stadium, and a decision that shapes your next few seasons in tech. Here is the full scorecard before you pick a side.</p>
+
+    <div class="scoreboard">
+      <div class="score-side dev">
+        <div class="role">Team Developer</div>
+        <div class="score-num">Build</div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="score-side test">
+        <div class="role">Team Tester</div>
+        <div class="score-num">Break</div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="https://www.justacademy.co/register-for-course-demo" target="_blank" rel="noopener">Book a Free Live Demo</a>
+      <a class="btn btn-outline" href="https://www.justacademy.co/blog-detail/developer-vs-tester-career-comparison-which-it-role-should-you-choose" target="_blank" rel="noopener">Read the Full Match Report</a>
+    </div>
+  </div>
+</section>
+
+<section id="lineup">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">The Playing XI</div>
+      <h2>Meet the two starting line ups</h2>
+      <p>Same stadium, completely different game plans. Here is how each side actually spends its day on the field.</p>
+    </div>
+
+    <div class="lineup">
+      <div class="player-card dev">
+        <h3>Team Developer</h3>
+        <div class="jersey">Batting order: Logic, Structure, Delivery</div>
+
+        <div class="stat-row">
+          <div class="stat-label"><span>Building from scratch</span><span>92</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width:92%"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label"><span>Architecture thinking</span><span>85</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width:85%"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label"><span>Ownership of a feature</span><span>90</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width:90%"></div></div>
+        </div>
+
+        <p class="desc">Developers take an idea from a blank file to something real people click on every day, carrying the logic, the structure and the late night fixes that come with owning code end to end.</p>
+      </div>
+
+      <div class="player-card test">
+        <h3>Team Tester</h3>
+        <div class="jersey">Bowling order: Detection, Automation, Defence</div>
+
+        <div class="stat-row">
+          <div class="stat-label"><span>Spotting hidden bugs</span><span>94</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width:94%"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label"><span>Automation scripting</span><span>82</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width:82%"></div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label"><span>Protecting the release</span><span>91</span></div>
+          <div class="stat-bar"><div class="stat-fill" style="width:91%"></div></div>
+        </div>
+
+        <p class="desc">Testers walk through every room of the house a developer just built, hunting for the one loose tile, the one broken switch, before a real user ever finds it first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="commentary">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Commentary Box</div>
+      <h2>What the pundits are saying</h2>
+    </div>
+    <div class="quote-grid">
+      <div class="quote-card">
+        Testing used to be seen as the easier game. That myth retired years ago, modern testers write frameworks that rival any developer's code.
+        <div class="who">Match Analyst</div>
+      </div>
+      <div class="quote-card">
+        The real winners today are the players comfortable on both ends of the pitch, building a feature and then trying to break it themselves.
+        <div class="who">Team Selector</div>
+      </div>
+      <div class="quote-card">
+        Pune's dugout is finally getting the same live, mentor led coaching that used to be a Mumbai exclusive.
+        <div class="who">Stadium Correspondent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="innings">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Salary Innings</div>
+      <h2>How the pay actually stacks up</h2>
+      <p>Both teams open at a similar score. The real separation happens once a player starts specialising.</p>
+    </div>
+    <div class="innings-grid">
+      <div class="innings-card">
+        <div class="over">Powerplay · 0 to 1 year</div>
+        <h3>Even Opening</h3>
+        <p>Fresh developers and fresh testers step onto the crease at a fairly similar starting salary across most Pune based teams.</p>
+      </div>
+      <div class="innings-card">
+        <div class="over">Middle Overs · 2 to 4 years</div>
+        <h3>Specialists Pull Ahead</h3>
+        <p>A developer who masters a niche stack, or a tester who moves into automation and API testing, starts scoring noticeably faster than a generalist.</p>
+      </div>
+      <div class="innings-card">
+        <div class="over">Death Overs · 5 plus years</div>
+        <h3>Leadership Premium</h3>
+        <p>Lead developers and automation architects both command the top order pay, proving neither team has a lower ceiling than the other.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="toolkit" class="sponsor-strip">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Training Ground</div>
+      <h2>Where Pune players actually train</h2>
+      <p>Live, instructor led sessions that mirror Mumbai's offline classrooms, minus the commute.</p>
+    </div>
+    <div class="board-grid">
+      <a class="board" href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">
+        <div class="board-tag">Bootcamp</div>
+        <h4>MERN Stack, Pune</h4>
+        <span class="go">Build like a startup team →</span>
+      </a>
+      <a class="board" href="https://www.justacademy.co/course-detail/pune/selenium-training-in-pune" target="_blank" rel="noopener">
+        <div class="board-tag">Course</div>
+        <h4>Selenium Training, Pune</h4>
+        <span class="go">Automate like a pro tester →</span>
+      </a>
+      <a class="board" href="https://www.justacademy.co/course-detail/pune/python-training-in-pune" target="_blank" rel="noopener">
+        <div class="board-tag">Course</div>
+        <h4>Python Training, Pune</h4>
+        <span class="go">One language, both teams →</span>
+      </a>
+      <a class="board" href="https://www.justacademy.co/course-detail/pune/javascript-training-in-pune" target="_blank" rel="noopener">
+        <div class="board-tag">Course</div>
+        <h4>JavaScript Training, Pune</h4>
+        <span class="go">Play across the whole field →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="press">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="tag">Press Box</div>
+      <h2>Further reading before the toss</h2>
+    </div>
+    <div class="press-list">
+      <a class="press-item" href="https://www.justacademy.co/blog-detail/selenium-automation-testing-framework-complete-beginner-guide" target="_blank" rel="noopener">
+        <span class="headline">Selenium Automation Testing Framework, a Complete Beginner Guide</span>
+        <span class="read">Read →</span>
+      </a>
+      <a class="press-item" href="https://www.justacademy.co/blog-detail/how-to-build-a-developer-portfolio-that-gets-you-interviews" target="_blank" rel="noopener">
+        <span class="headline">How to Build a Developer Portfolio That Gets You Interviews</span>
+        <span class="read">Read →</span>
+      </a>
+      <a class="press-item" href="https://www.justacademy.co/blog-detail/top-it-skills-to-learn-in-2026-for-high-paying-jobs" target="_blank" rel="noopener">
+        <span class="headline">Top IT Skills to Learn in 2026 for High Paying Jobs</span>
+        <span class="read">Read →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="verdict">
+  <div class="wrap">
+    <div class="verdict-box">
+      <h2>So which team do you play for</h2>
+      <p>There is no losing side in this match, only the side that matches how you naturally think. Read the full comparison, then decide with a coach in your corner.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://www.justacademy.co/register-for-course-demo" target="_blank" rel="noopener">Book Your Free Demo</a>
+        <a class="btn btn-outline" href="https://www.justacademy.co/blog-detail/developer-vs-tester-career-comparison-which-it-role-should-you-choose" target="_blank" rel="noopener">Read Full Comparison</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h5>Career Stadium</h5>
+        <p style="color:rgba(244,242,234,0.65); font-size:14px; max-width:280px;">A live look at the Developer vs Tester career derby, built for Pune based learners deciding which side of the field to play on.</p>
+      </div>
+      <div>
+        <h5>Training Ground</h5>
+        <ul>
+          <li><a href="https://www.justacademy.co" target="_blank" rel="noopener">JustAcademy Home Ground</a></li>
+          <li><a href="https://www.justacademy.co/job-bootcamp-detail/pune/mern-stack-developer-course-in-pune-startup-product-development-training" target="_blank" rel="noopener">MERN Bootcamp, Pune</a></li>
+          <li><a href="https://www.justacademy.co/course-detail/pune/selenium-training-in-pune" target="_blank" rel="noopener">Selenium Course, Pune</a></li>
+          <li><a href="https://www.justacademy.co/course-detail/pune/python-training-in-pune" target="_blank" rel="noopener">Python Course, Pune</a></li>
+          <li><a href="https://www.justacademy.co/course-detail/pune/javascript-training-in-pune" target="_blank" rel="noopener">JavaScript Course, Pune</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Press Box</h5>
+        <ul>
+          <li><a href="https://www.justacademy.co/blog-detail/developer-vs-tester-career-comparison-which-it-role-should-you-choose" target="_blank" rel="noopener">Full Match Report</a></li>
+          <li><a href="https://www.justacademy.co/blog-detail/selenium-automation-testing-framework-complete-beginner-guide" target="_blank" rel="noopener">Selenium Framework Guide</a></li>
+          <li><a href="https://www.justacademy.co/blog-detail/how-to-build-a-developer-portfolio-that-gets-you-interviews" target="_blank" rel="noopener">Developer Portfolio Guide</a></li>
+          <li><a href="https://www.justacademy.co/blog-detail/top-it-skills-to-learn-in-2026-for-high-paying-jobs" target="_blank" rel="noopener">Top IT Skills, 2026</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">Career Stadium · A JustAcademy learning resource · Built for Pune, played everywhere</div>
+  </div>
+</footer>
+
+</body>
+</html>
